@@ -1,0 +1,31 @@
+server:
+  port: 8030
+spring:
+  application:
+    name: storage-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/storage?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  enable-auto-data-source-proxy: false
+  tx-service-group: storage-service-tx_group
+  service:
+    vgroup-mapping:
+      storage-service-tx_group: default  #key与上面的tx-service-group的值对应
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      group: SEATA_GROUP
+      cluster: default

@@ -1,0 +1,25 @@
+server:
+  port: 8010
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        username: nacos
+        password: nacos
+  application:
+    name: biz-service
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  enable-auto-data-source-proxy: false
+  tx-service-group: biz-service-tx_group
+  service:
+    vgroup-mapping:
+      biz-service-tx_group: default  #key与上面的tx-service-group的值对应
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      group: SEATA_GROUP
+      cluster: default
