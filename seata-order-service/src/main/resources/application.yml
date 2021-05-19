@@ -17,7 +17,6 @@ spring:
 seata:
   enabled: true
   application-id: ${spring.application.name}
-  enable-auto-data-source-proxy: false
   tx-service-group: order-service-tx_group
   service:
     vgroup-mapping:

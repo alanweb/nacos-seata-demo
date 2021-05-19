@@ -8,15 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+
 @EnableDiscoveryClient
 @SpringBootApplication
 public class OrderServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(OrderServiceApplication.class, args);
     }
-
     @Bean
-    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+    public JdbcTemplate jdbcTemplate(DataSource dataSource){
         return new JdbcTemplate(new DataSourceProxy(dataSource));
     }
 }
